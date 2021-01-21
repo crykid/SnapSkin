@@ -5,9 +5,9 @@ import android.Manifest;
 import android.os.Bundle;
 
 import android.app.Activity;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.PermissionChecker;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.PermissionChecker;
 
 import com.snap.lib.SkinManager;
 

@@ -32,17 +32,18 @@ public class SkinManager extends Observable {
         SkinResources.getInstance().init(application);
         mLifecycler = new AppActivityLifeCycle(this);
         application.registerActivityLifecycleCallbacks(mLifecycler);
-        loadSkin(MagicPreference.INSTANCE.getSkin());
+        loadSkin(SnapPreference.INSTANCE.getSkin());
     }
 
     public void loadSkin(String skin) {
         if (TextUtils.isEmpty(skin)) {
-            // TODO: 2021/1/20 清除缓存里皮肤
+            SnapPreference.INSTANCE.setSkin("");
             SkinResources.getInstance().reset();
         } else {
 
             Resources appResources = mContext.getResources();
             try {
+                //创建新的AssetManager，加载apk资源
                 AssetManager assetManager = AssetManager.class.newInstance();
                 Method addAssetPath = assetManager.getClass().getMethod("addAssetPath", String.class);
                 addAssetPath.invoke(assetManager, skin);
@@ -56,16 +57,19 @@ public class SkinManager extends Observable {
                 String packageName = packageArchiveInfo.packageName;
                 SkinResources.getInstance().applySkin(skinResources, packageName);
 
-                MagicPreference.INSTANCE.setSkin(skin);
+                SnapPreference.INSTANCE.setSkin(skin);
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
+        updateSkin();
+    }
+
+    private void updateSkin() {
         setChanged();
         notifyObservers(null);
     }
-
 
 }

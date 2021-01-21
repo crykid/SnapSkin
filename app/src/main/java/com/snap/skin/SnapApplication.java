@@ -2,7 +2,7 @@ package com.snap.skin;
 
 import android.app.Application;
 
-import com.snap.lib.MagicPreference;
+import com.snap.lib.SnapPreference;
 import com.snap.lib.SkinManager;
 
 
@@ -11,12 +11,12 @@ import com.snap.lib.SkinManager;
  * Created by: blank
  * Description:
  */
-public class MagicApplication extends Application {
+public class SnapApplication extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
-        MagicPreference.INSTANCE.init(this, "nimo");
+        SnapPreference.INSTANCE.init(this, "nimo");
         SkinManager.getInstance().init(this);
     }
 }

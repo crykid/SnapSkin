@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.support.v4.view.LayoutInflaterCompat;
+import androidx.core.view.LayoutInflaterCompat;
 
 import java.lang.reflect.Field;
 import java.util.Observable;

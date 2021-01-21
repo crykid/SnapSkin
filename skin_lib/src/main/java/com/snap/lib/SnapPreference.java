@@ -9,7 +9,7 @@ import android.text.TextUtils;
  * Created by: blank
  * Description:
  */
-public enum MagicPreference {
+public enum SnapPreference {
     INSTANCE;
     private final static String SHARED_PREFERENCE_NAME = "com.magic.skin";
     private static final String KEY_SKIN_PATH = "key_skin_path";

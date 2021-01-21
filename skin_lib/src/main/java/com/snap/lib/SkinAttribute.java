@@ -2,7 +2,7 @@ package com.snap.lib;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.v4.view.ViewCompat;
+import androidx.core.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,9 +43,9 @@ public class SkinAttribute {
             //获得属性名  textColor/background
             String attributeName = attrs.getAttributeName(i);
             if (ATTRIBUTES.contains(attributeName)) {
-                // #
-                // ?722727272
-                // @722727272
+                //  eg：background： #
+                //  eg：background：?722727272 ， 这个是资源id
+                //  eg：background：@722727272
                 String attributeValue = attrs.getAttributeValue(i);
                 // 比如color 以#开头表示写死的颜色 不可用于换肤
                 if (attributeValue.startsWith("#")) {
@@ -86,6 +86,7 @@ public class SkinAttribute {
 
     final static class SkinView {
         View mView;
+        //View的所有属性
         List<SkinPair> mSkinPairs;
 
         public SkinView(View view, List<SkinPair> skinPairs) {
@@ -150,7 +151,9 @@ public class SkinAttribute {
     }
 
     final static class SkinPair {
+        //属性名称
         String attributeName;
+        //属性资源id
         int resId;
 
         public SkinPair(String attributeName, int resId) {

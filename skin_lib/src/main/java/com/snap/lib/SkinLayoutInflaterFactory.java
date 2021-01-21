@@ -2,8 +2,10 @@ package com.snap.lib;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,13 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Created by  : blank
+ * Create one  : 2021/1/22 at  1:27
+ * Name        :
+ * Description : 每一个Activty对应一个inflater，每一个activity对应一个SkinAttribute；
+ * 每生成一个view，就hook它的属性。
+ */
 class SkinLayoutInflaterFactory implements LayoutInflater.Factory2, Observer {
     private static final String[] CLASSP_REFIXES = {
             "android.widget.",
@@ -36,6 +45,14 @@ class SkinLayoutInflaterFactory implements LayoutInflater.Factory2, Observer {
         mSkinAttribute = new SkinAttribute();
     }
 
+    /**
+     * 创建每一个具体的view
+     * @param parent
+     * @param name
+     * @param context
+     * @param attrs
+     * @return
+     */
     @Nullable
     @Override
     public View onCreateView(@Nullable View parent, @NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
@@ -44,6 +61,7 @@ class SkinLayoutInflaterFactory implements LayoutInflater.Factory2, Observer {
         if (view == null) {
             view = createView(name, context, attrs);
         }
+        //hoot每一个view的属性
         if (view != null) {
             mSkinAttribute.hook(view, attrs);
         }
