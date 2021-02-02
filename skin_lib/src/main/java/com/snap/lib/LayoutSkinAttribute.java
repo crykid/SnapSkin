@@ -2,7 +2,9 @@ package com.snap.lib;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+
 import androidx.core.view.ViewCompat;
+
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,7 +14,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SkinAttribute {
+/**
+ *Created by  : blank
+ *Create one  : 2021/2/2 at  22:41
+ *Name        :
+ *Description : 每一个layout对应的所有的view
+ */
+public class LayoutSkinAttribute {
     private final static List<String> ATTRIBUTES = new ArrayList<>();
 
     static {
@@ -84,6 +92,9 @@ public class SkinAttribute {
     }
 
 
+    /**
+     * 每一个view的属性-id集合；
+     */
     final static class SkinView {
         View mView;
         //View的所有属性
@@ -150,6 +161,9 @@ public class SkinAttribute {
         }
     }
 
+    /**
+     * 属性-id
+     */
     final static class SkinPair {
         //属性名称
         String attributeName;

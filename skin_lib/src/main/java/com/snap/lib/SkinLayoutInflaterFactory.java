@@ -19,7 +19,8 @@ import java.util.Observer;
  * Created by  : blank
  * Create one  : 2021/1/22 at  1:27
  * Name        :
- * Description : 每一个Activty对应一个inflater，每一个activity对应一个SkinAttribute；
+ * Description : 每一个Activty对应一个inflater，每一个activity对应一个SkinAttribute，
+ * 每个SkinAttribute持有当前layout的所有view；
  * 每生成一个view，就hook它的属性。
  */
 class SkinLayoutInflaterFactory implements LayoutInflater.Factory2, Observer {
@@ -37,16 +38,17 @@ class SkinLayoutInflaterFactory implements LayoutInflater.Factory2, Observer {
     private static final HashMap<String, Constructor<? extends View>> CONSTRUCTOR_MAP =
             new HashMap<String, Constructor<? extends View>>();
 
-    private SkinAttribute mSkinAttribute;
+    private LayoutSkinAttribute mLayoutSkinAttribute;
     private Activity mActivity;
 
     public SkinLayoutInflaterFactory(Activity activity) {
         this.mActivity = activity;
-        mSkinAttribute = new SkinAttribute();
+        mLayoutSkinAttribute = new LayoutSkinAttribute();
     }
 
     /**
      * 创建每一个具体的view
+     *
      * @param parent
      * @param name
      * @param context
@@ -63,7 +65,7 @@ class SkinLayoutInflaterFactory implements LayoutInflater.Factory2, Observer {
         }
         //hoot每一个view的属性
         if (view != null) {
-            mSkinAttribute.hook(view, attrs);
+            mLayoutSkinAttribute.hook(view, attrs);
         }
         return view;
     }
@@ -124,6 +126,6 @@ class SkinLayoutInflaterFactory implements LayoutInflater.Factory2, Observer {
     @Override
     public void update(Observable o, Object arg) {
         SkinThemeUtils.updateStatusBarColor(mActivity);
-        mSkinAttribute.applySkin();
+        mLayoutSkinAttribute.applySkin();
     }
 }

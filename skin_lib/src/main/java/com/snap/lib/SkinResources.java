@@ -45,7 +45,7 @@ public class SkinResources {
     }
 
     /**
-     * 根据app的资源ID找到资源包中对应的资源；
+     * 根据app的资源ID找到资源包中对应的资源ID；
      *
      * @param resId 资源  ID
      * @return
@@ -54,7 +54,9 @@ public class SkinResources {
         if (isDefaultSkin) {
             return resId;
         }
+        //资源 id的名字。eg：bg_rectangle_blue
         final String resourceEntryName = mAppResources.getResourceEntryName(resId);
+        //资源类型。eg：drawable，value
         final String resourceTypeName = mAppResources.getResourceTypeName(resId);
         return mSkinResources.getIdentifier(resourceEntryName, resourceTypeName, mSkinPkgName);
     }

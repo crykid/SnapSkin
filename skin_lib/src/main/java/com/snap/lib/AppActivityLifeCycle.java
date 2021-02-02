@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
+
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.LayoutInflater;
+
 import androidx.core.view.LayoutInflaterCompat;
 
 import java.lang.reflect.Field;
@@ -28,7 +31,7 @@ public class AppActivityLifeCycle implements Application.ActivityLifecycleCallba
     }
 
     @Override
-    public void onActivityCreated(Activity activity,Bundle savedInstanceState) {
+    public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
 
         //更新状态栏
         SkinThemeUtils.updateStatusBarColor(activity);
@@ -62,6 +65,7 @@ public class AppActivityLifeCycle implements Application.ActivityLifecycleCallba
             LayoutInflaterCompat.setFactory2(layoutInflater, skinLayoutInflaterFactory);
         }
         mLayoutInflacterFactories.put(activity, skinLayoutInflaterFactory);
+        //
         mObservable.addObserver(skinLayoutInflaterFactory);
     }
 
@@ -92,6 +96,7 @@ public class AppActivityLifeCycle implements Application.ActivityLifecycleCallba
 
     @Override
     public void onActivityDestroyed(@NonNull Activity activity) {
+        //activity销毁时，移除其layoutInflaterFactory
         SkinLayoutInflaterFactory observer = mLayoutInflacterFactories.remove(activity);
         SkinManager.getInstance().deleteObserver(observer);
     }

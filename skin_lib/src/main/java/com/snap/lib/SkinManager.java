@@ -35,6 +35,9 @@ public class SkinManager extends Observable {
         loadSkin(SnapPreference.INSTANCE.getSkin());
     }
 
+    /**
+     * @param skin 全路径
+     */
     public void loadSkin(String skin) {
         if (TextUtils.isEmpty(skin)) {
             SnapPreference.INSTANCE.setSkin("");
@@ -67,6 +70,9 @@ public class SkinManager extends Observable {
         updateSkin();
     }
 
+    /**
+     * 通知每一个观察者，更新皮肤
+     */
     private void updateSkin() {
         setChanged();
         notifyObservers(null);
